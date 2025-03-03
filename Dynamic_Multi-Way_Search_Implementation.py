@@ -25,7 +25,7 @@ def dynamic_multi_way_search(arr: List[int], target: int) -> int:
         
         # Ensure divisions is a power of 2 for efficient partitioning
         # (optional, but can help with some hardware optimizations)
-        # divisions = 2 ** math.floor(math.log2(divisions))
+        # divisions = 2  math.floor(math.log2(divisions))
         
         # Cap at a reasonable maximum to avoid too many comparisons
         return min(divisions, 32)
@@ -167,32 +167,32 @@ if __name__ == "__main__":
 """
 Instead of using fixed thresholds and pre-set division counts, the algorithm now:
 
-1. **Uses a logarithmic formula**: `divisions = 2 * log₂(size)`
+1. Uses a logarithmic formula : `divisions = 2 * log₂(size)`
    - This creates a natural scaling where divisions grow with array size, but at a decreasing rate
    - The factor of 2 controls how aggressive the scaling is
 
-2. **Sample scaling behavior**:
+2. Sample scaling behavior:
    - Array size 10: ~2 divisions (binary search)
    - Array size 100: ~2 * log₂(100) ≈ 2 * 6.64 ≈ 13 divisions
    - Array size 1,000: ~2 * log₂(1000) ≈ 2 * 9.97 ≈ 20 divisions
    - Array size 10,000: ~2 * log₂(10000) ≈ 2 * 13.29 ≈ 26 divisions
    - Array size 100,000: ~2 * log₂(100000) ≈ 2 * 16.61 ≈ 33, but capped at 32
 
-3. **Graceful scaling**:
+3. Graceful scaling:
    - The logarithmic growth ensures the number of divisions doesn't grow too quickly for large arrays
    - The cap at 32 prevents excessive division points which would increase comparison overhead
 
 ## Benefits of This Approach
 
-1. **Smooth scaling**: No arbitrary jumps in division counts between thresholds
+1. Smooth scaling: No arbitrary jumps in division counts between thresholds
 
-2. **Adaptability**: Automatically adjusts to any array size without needing to define additional thresholds
+2. Adaptability: Automatically adjusts to any array size without needing to define additional thresholds
 
-3. **Theoretical optimality**: The logarithmic scaling aligns with the theoretical trade-off between:
+3. Theoretical optimality: The logarithmic scaling aligns with the theoretical trade-off between:
    - More divisions = fewer iterations but more comparisons per iteration
    - Fewer divisions = more iterations but fewer comparisons per iteration
 
-4. **Real-world applications**: In applications like database searching or content delivery networks, this dynamic approach adapts to different data distributions more effectively
+4. Real-world applications: In applications like database searching or content delivery networks, this dynamic approach adapts to different data distributions more effectively
 
 This approach mimics how modern database query optimizers work - they dynamically adjust their partitioning strategies based on data size and distribution.
 """
