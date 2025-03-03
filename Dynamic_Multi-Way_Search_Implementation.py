@@ -164,7 +164,7 @@ if __name__ == "__main__":
     test_search(dynamic_multi_way_search_iterative)
 
 
-""""""
+"""
 Instead of using fixed thresholds and pre-set division counts, the algorithm now:
 
 1. **Uses a logarithmic formula**: `divisions = 2 * log₂(size)`
